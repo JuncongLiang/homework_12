@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <title>Stats</title>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <h1>Welcome to the stats page!</h1>
+    </div>
+    <div class="content">
+        <span></span><span></span>
+    </div>
+</div>
+</body>
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            method: "GET",
+            url: "/api/activity"
+        }).then( resp => {
+            let arr = resp.data;
+            for(var i in arr){
+                var json = arr[i];
+                console.log(json);
+                console.log(i);
+                if(arr[i]['workout'] !== '-1-') {
+                    for (var key in json) {
+
+                        if(key !== 'createdAt' && key !== 'updatedAt') {
+                            var item = '<div><span>' + key + '</span>:<span>' + json[key] + '</span></div>'; //创建内容
+                            $(".content").append(item);
+                        }
+                    }
+                    $(".content").append("<hr/>");
+                }
+            }
+
+        })
+    });
+</script>
+</html>

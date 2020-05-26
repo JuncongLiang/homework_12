@@ -8,6 +8,8 @@ let db = require("./models");
 
 // -- Requiring our Routes -- //
 const api_routes = require("./routes/api_routes");
+const api_workout =  require("./routes/api_workout");
+const api_exercise =  require("./routes/api_exercise");
 const about_routes = require("./routes/html_routes");
 
 // -- CREATE AN `EXPRESS` INSTANCE -- //
@@ -45,6 +47,8 @@ require("./routes/html_routes")(app);
 
 // -- Use express router to register routes as middleware -- //
 app.use('/api/activity', api_routes);
+app.use('/api/workout', api_workout);
+app.use('/api/exercise', api_exercise);
 
 // ======= ALTERNATE SYNTAX FOR /about ROUTE USING EXPRESS ROUTER ==== //
 // app.use('/about', about_routes);  // <-- uncomment to use, update 

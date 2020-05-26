@@ -45,7 +45,7 @@ button#add-workout {
 }
 
 div.right-column {
-  display: none;
+  /*display: none;*/
 }
 
 #workouts-list ul li,

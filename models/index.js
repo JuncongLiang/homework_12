@@ -18,21 +18,53 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-fs
-  .readdirSync(__dirname)
-  .filter(file => {
-    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
-  })
-  .forEach(file => {
-    const model = sequelize['import'](path.join(__dirname, file));
-    db[model.name] = model;
-  });
 
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
+
+
+let worouts = {
+    create() {
+        const worouts = sequelize.define("Workouts", {
+            name: Sequelize.STRING(100),
+            date: Sequelize.STRING(100),
+        });
+
+        return worouts;
+    }
+}
+
+let exercise = {
+    create() {
+        const exercise = sequelize.define("Exercise", {
+            distance: Sequelize.STRING(100),
+            sets: Sequelize.STRING(100),
+            reps: Sequelize.STRING(100),
+            weight: Sequelize.STRING(100),
+            duration: Sequelize.STRING(100),
+            exercise: Sequelize.STRING(100),
+            workout: Sequelize.STRING(100),
+        });
+        return exercise;
+    }
+}
+
+worouts.create().sync()
+    .then(() => {
+        console.log('init db ok')
+    })
+    .catch(err => {
+        console.log('init db error', err)
+    })
+
+exercise.create().sync()
+    .then(() => {
+        console.log('init db ok')
+    })
+    .catch(err => {
+        console.log('init db error', err)
+    })
+
+db.worouts = worouts;
+db.exercise = exercise;
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

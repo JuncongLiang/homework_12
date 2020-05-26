@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "watch": "nodemon server.js"
+    "watch": "nodemon server.js",
+    "unseed": "node_modules/.bin/sequelize db:seed:all"
   },
   "author": "",
   "license": "MIT",
@@ -14,6 +15,7 @@
     "express": "^4.17.1",
     "morgan": "^1.10.0",
     "mysql2": "^2.1.0",
-    "sequelize": "^5.21.9"
+    "sequelize": "^5.21.9",
+    "sequelize-cli": "^5.5.1"
   }
 }
