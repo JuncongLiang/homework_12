@@ -73,7 +73,7 @@ $(document).ready(function () {
         window.open("stats.html")
     })
 
-    // STUDENTS: Add an activity to the selected workout, then save via API
+    //Add an activity to the selected workout, then save via API
     $("button#add-activity").on("click", function (e) {
         e.preventDefault();
         console.log($('.selected')[0]);
@@ -91,7 +91,7 @@ $(document).ready(function () {
 
     /** ********** API Calls ******************* */
 
-    // Retrive a JSON payload of all exercises
+    //Retrive a JSON payload of all exercises
     function getExercises() {
         let arr = [];
         $.ajax({
@@ -114,7 +114,7 @@ $(document).ready(function () {
         })
     }
 
-    // STUDENTS: Retrieve a JSON payload of all workouts done so far
+    //Retrieve a JSON payload of all workouts done so far
     function getWorkouts() {
         console.log(JSON.parse(localStorage.getItem("workout")));
 
@@ -124,7 +124,7 @@ $(document).ready(function () {
 
     }
 
-    // Save the currently selected workout
+    //Save the currently selected workout
     function saveSelectedWorkout() {
         let workout = JSON.parse(localStorage.getItem("workout"));
         try {
