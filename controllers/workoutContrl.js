@@ -18,14 +18,5 @@ module.exports = {
             });
         });
     },
-
-
-
-    update: function (req, res, next) {
-        // Can you look up how to handle updating with sequelize?
-    },
-
-    delete: function (req, res, next) {
-        // Can you look up how to handle deleting with sequelize?
-    }
+    
 }

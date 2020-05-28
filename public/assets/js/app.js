@@ -1,16 +1,10 @@
 $(document).ready(function () {
 
-    // We're going to store some data here because we want to reference this
-    // stuff multiple times, and this way we don't need to keep doing API calls
     let allWorkouts = [];
-    let selectedWorkout = {activities: []};
+    let selectedWorkout = { activities: [] };
 
 
-    /** ********** DOM Population ********** */
 
-    // Populate workout data
-    // (If we're adding a new blank item to the list we will want to auto-select
-    // it, so that is handled in the params argument)
     function populateWorkouts(params) {
         $("#workouts-list").empty();
         const ul = $("<ul>");
@@ -33,7 +27,7 @@ $(document).ready(function () {
         }
     }
 
-    // STUDENTS: Populate activity data for the selected workout
+
     function populateActivities() {
 
     }
@@ -41,10 +35,7 @@ $(document).ready(function () {
 
     /** ********* Event handlers ********* */
 
-    //When someone clicks on a workout item, we'll populate the DOM with
-    // all activities for that workout. Note that because the workouts don't
-    // exist in the DOM when the page is loaded, we need to use the special
-    // event selector.
+
     $("#workouts-list").on("click", ".workout-item", function (e) {
         e.preventDefault();
         console.log("item clicked")
@@ -62,7 +53,7 @@ $(document).ready(function () {
         e.preventDefault();
         const dayString = moment().format("MMM DD, YYYY");
         const name = $("#workout-name").val().trim();
-        selectedWorkout = {name: name, day: moment().format("MMM DD, YYYY"), activities: []};
+        selectedWorkout = { name: name, day: moment().format("MMM DD, YYYY"), activities: [] };
         allWorkouts.push(selectedWorkout);
 
         // Save to db via api
@@ -73,7 +64,7 @@ $(document).ready(function () {
         $("#weight").val("")
         $("#duration").val("")
         $("#exercise").val("")
-        populateWorkouts({selectLatest: true});
+        populateWorkouts({ selectLatest: true });
         $("div.right-column").show();
     });
 
@@ -111,7 +102,7 @@ $(document).ready(function () {
             // populate the select area
             resp.data.forEach(exercise => {
                 console.log(exercise.exercise);
-                if(arr.indexOf(exercise.exercise) === -1) {
+                if (arr.indexOf(exercise.exercise) === -1) {
                     const opt = $("<option>");
                     arr.push(exercise.exercise);
                     opt.val(exercise.exercise);
@@ -125,19 +116,12 @@ $(document).ready(function () {
 
     // STUDENTS: Retrieve a JSON payload of all workouts done so far
     function getWorkouts() {
-        console.log(JSON.parse(localStorage.getItem("workout" )));
-        // $.ajax({
-        //     method: "GET",
-        //     url: "/api/workout",
-        // }).then(function (resp) {
-        //     for (let i = 0; i < resp.data.length; i++) {
-        //         let selectedWorkout = {name: resp.data[i].name, day: resp.data[i].date, activities: []};
-        //         allWorkouts.push(selectedWorkout)
-        //     }
-        allWorkouts = JSON.parse(localStorage.getItem("workout" ));
+        console.log(JSON.parse(localStorage.getItem("workout")));
+
+        allWorkouts = JSON.parse(localStorage.getItem("workout"));
         //     console.log(allWorkouts)
-            populateWorkouts({selectLatest: true});
-        // });
+        populateWorkouts({ selectLatest: true });
+
     }
 
     // Save the currently selected workout
@@ -152,20 +136,9 @@ $(document).ready(function () {
 
         localStorage.setItem("workout", JSON.stringify(workout));
 
-        // $.ajax({
-        //     method: "POST",
-        //     url: "/api/workout",
-        //     data: selectedWorkout
-        // }).then(function (resp) {
-        //     console.log(resp);
-        //     if (resp && resp._id) {
-        //         selectedWorkout._id = resp._id;
-        //     }
-        // });
     }
 
-    // Add an activity to the current workout being viewed.
-    // Save the currently selected workout
+
     function saveActivity(activity) {
         console.log(activity);
         $.ajax({
@@ -184,7 +157,7 @@ $(document).ready(function () {
     }
 
 
-    // Page-loading operations
+
     getExercises();
     getWorkouts();
 });

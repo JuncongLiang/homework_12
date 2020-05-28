@@ -1,5 +1,3 @@
-// -- SEQUELIZE SCHEMA MODEL CONFIG FILE -- //
-// --> YOU DO NOT NEED TO MODIFY ANYTHING IN THIS FILE <-- //
 
 'use strict';
 

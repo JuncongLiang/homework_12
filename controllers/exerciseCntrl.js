@@ -9,12 +9,7 @@ const ExerciseCntrl = {
     db.exercise.create().findAll().then(function (results) {
       res.json({result: "success", data: results})
     });
-    // -- YOU WILL UPDATE WHAT THE "RESPONSE OBJECT" RETURNS -- //
 
-    // -- EXAMPLE SEQUELIZE DB QUERY -- //
-    // Exercise.find({}).then(data => {
-    //   res.json(data)
-    // });
   },
 
   postAll(req, res) {
